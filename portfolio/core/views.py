@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Project, Skill
+from .models import Project, Skill, BlogPost
 from .forms import ContactForm
 
 def home(request):
-    return render(request, 'core/home.html')
+    recent_posts = BlogPost.objects.filter(is_published=True)[:3]
+    return render(request, 'core/home.html', {'recent_posts': recent_posts})
 
 def about(request):
     return render(request, 'core/about.html')
@@ -27,3 +28,11 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'core/contact.html', {'form': form})
+
+def blog_list(request):
+    posts = BlogPost.objects.filter(is_published=True)
+    return render(request, 'core/blog_list.html', {'posts': posts})
+
+def blog_detail(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug, is_published=True)
+    return render(request, 'core/blog_detail.html', {'post': post})
