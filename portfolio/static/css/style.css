@@ -1,13 +1,6 @@
 /* Custom styles */
-html {
-    height: 100%;
-}
-
 body {
     font-family: 'Arial', sans-serif;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .navbar {
@@ -32,41 +25,8 @@ body {
     background-color: #007bff;
 }
 
-main {
-    flex: 1 0 auto;
-    padding-bottom: 20px; /* Add some padding at the bottom for spacing */
-}
-
 footer {
-    flex-shrink: 0;
+    position: relative;
+    bottom: 0;
     width: 100%;
-    margin-top: auto;
-    /* Footer always visible at the bottom even on short pages */
-}
-
-/* Blog styles */
-.blog-post {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.blog-content {
-    line-height: 1.8;
-    font-size: 1.1rem;
-}
-
-.blog-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin: 1.5rem 0;
-}
-
-.blog-content h2, .blog-content h3 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
-.blog-content p {
-    margin-bottom: 1.5rem;
 }

@@ -1,11 +1,17 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container min-vh-100 d-flex flex-column justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-10 text-center">
+            <img src="{% static 'images/banner.jpg' %}" alt="Portfolio Banner" class="img-fluid rounded shadow-lg mb-5" style="max-height: 350px; object-fit: cover; width: 100%;">
+        </div>
+    </div>
     <div class="row align-items-center">
-        <div class="col-md-6 mx-auto text-center">
-            <h1 class="display-4">Hello, I'm <span class="text-primary">Maimoon</span></h1>
-            <p class="lead">I'm a Full Stack Developer passionate about creating web applications</p>
+        <div class="col-md-7 mx-auto text-center">
+            <h1 class="display-4 mb-3">Hello, I'm <span class="text-primary">Maimoon</span></h1>
+            <p class="lead mb-4">I'm a Full Stack Developer passionate about creating modern, responsive web applications with clean, efficient code.</p>
             <div class="mt-4">
                 <a href="{% url 'core:projects' %}" class="btn btn-primary me-3">View My Work</a>
                 <a href="{% url 'core:contact' %}" class="btn btn-outline-primary">Contact Me</a>
