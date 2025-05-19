@@ -1,6 +1,17 @@
 /* Custom styles */
-body {
+html, body {
+    height: 100%;
     font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 .navbar {
@@ -26,9 +37,9 @@ body {
 }
 
 footer {
-    position: relative;
-    bottom: 0;
+    flex-shrink: 0;
     width: 100%;
+    margin-top: auto;
 }
 
 /* Blog styles */
