@@ -4,6 +4,7 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
+    # Public pages
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('projects/', views.projects, name='projects'),
@@ -11,4 +12,14 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('blog/', views.blog_list, name='blog_list'),
     path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
+    path('blog/<slug:slug>/comment/', views.add_comment, name='add_comment'),
+    
+    # Authentication
+    path('accounts/signup/', views.signup, name='signup'),
+    
+    # Blog management
+    path('dashboard/posts/', views.user_blog_posts, name='user_blog_posts'),
+    path('dashboard/posts/new/', views.create_blog_post, name='create_blog_post'),
+    path('dashboard/posts/<slug:slug>/edit/', views.update_blog_post, name='update_blog_post'),
+    path('dashboard/posts/<slug:slug>/delete/', views.delete_blog_post, name='delete_blog_post'),
 ]

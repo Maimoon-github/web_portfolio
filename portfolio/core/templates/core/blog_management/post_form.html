@@ -1,0 +1,98 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h2 class="h4 mb-0">{{ title }}</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                            {{ form.title }}
+                            {% if form.title.errors %}
+                            <div class="text-danger">
+                                {{ form.title.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+                            {{ form.content }}
+                            <div class="form-help-text mt-1"><i class="fas fa-info-circle me-1"></i>You can use Markdown for formatting.</div>
+                            {% if form.content.errors %}
+                            <div class="text-danger">
+                                {{ form.content.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.excerpt.id_for_label }}" class="form-label">Excerpt</label>
+                            {{ form.excerpt }}
+                            <div class="form-help-text mt-1"><i class="fas fa-info-circle me-1"></i>A brief summary that will appear in the blog list.</div>
+                            {% if form.excerpt.errors %}
+                            <div class="text-danger">
+                                {{ form.excerpt.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="{{ form.featured_image.id_for_label }}" class="form-label">Featured Image</label>
+                            <div class="input-group">
+                                {{ form.featured_image }}
+                            </div>
+                            {% if form.featured_image.errors %}
+                            <div class="text-danger">
+                                {{ form.featured_image.errors }}
+                            </div>
+                            {% endif %}
+                            {% if post and post.featured_image %}
+                            <div class="mt-2">
+                                <p>Current image: <a href="{{ post.featured_image.url }}" target="_blank">{{ post.featured_image }}</a></p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4 form-check">
+                            {{ form.is_published }}
+                            <label for="{{ form.is_published.id_for_label }}" class="form-check-label">Publish immediately</label>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'core:user_blog_posts' %}" class="btn btn-outline-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">
+                                {% if post %}
+                                    Update Post
+                                {% else %}
+                                    Create Post
+                                {% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- You could add a WYSIWYG editor here in the future -->
+{% endblock %}

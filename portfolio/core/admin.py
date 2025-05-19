@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, Contact, BlogPost
+from .models import Project, Skill, Contact, BlogPost, Comment
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -19,8 +19,16 @@ class ContactAdmin(admin.ModelAdmin):
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'updated_at', 'is_published')
+    list_display = ('title', 'author', 'created_at', 'updated_at', 'is_published')
     list_editable = ('is_published',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'content', 'excerpt')
-    list_filter = ('is_published', 'created_at')
+    list_filter = ('is_published', 'created_at', 'author')
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'post', 'created_at', 'is_approved')
+    list_editable = ('is_approved',)
+    list_filter = ('is_approved', 'created_at')
+    search_fields = ('name', 'email', 'content')

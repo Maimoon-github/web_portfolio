@@ -29,13 +29,36 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:skills' %}">Skills</a>
+                    </li>                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:blog_list' %}">Blog</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:user_blog_posts' %}"><i class="fas fa-pencil-alt me-1"></i>Blog Dashboard</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+                        </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'core:user_blog_posts' %}"><i class="fas fa-edit me-2"></i>My Posts</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:blog_list' %}">Blog</a>
+                        <a class="nav-link" href="{% url 'core:signup' %}"><i class="fas fa-user-plus me-1"></i> Sign Up</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
-                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

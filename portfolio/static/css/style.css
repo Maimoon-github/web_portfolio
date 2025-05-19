@@ -30,3 +30,43 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Blog styles */
+.blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.blog-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard styles */
+.dashboard-header {
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Banner image style */
+.banner-image {
+    max-height: 350px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}

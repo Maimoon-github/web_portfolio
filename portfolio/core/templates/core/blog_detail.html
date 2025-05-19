@@ -5,7 +5,10 @@
     <article class="blog-post">
         <div class="mb-4">
             <h1>{{ post.title }}</h1>
-            <p class="text-muted">Posted on {{ post.created_at|date:"F d, Y" }}{% if post.updated_at %} | Last updated: {{ post.updated_at|date:"F d, Y" }}{% endif %}</p>
+            <p class="text-muted">
+                By {% if post.author %}{{ post.author.get_full_name|default:post.author.username }}{% else %}Anonymous{% endif %} | 
+                Posted on {{ post.created_at|date:"F d, Y" }}{% if post.updated_at %} | Last updated: {{ post.updated_at|date:"F d, Y" }}{% endif %}
+            </p>
         </div>
         
         {% if post.featured_image %}
@@ -20,6 +23,51 @@
 
         <div class="mt-5">
             <a href="{% url 'core:blog_list' %}" class="btn btn-outline-primary">← Back to Blog List</a>
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="comments-section mt-5">
+            <h4 class="mb-4">Comments</h4>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Leave a Comment</h5>
+                    <form action="{% url 'core:add_comment' post.slug %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Comment</label>
+                            <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if post.comments.all %}
+                <h5>{{ post.comments.count }} Comment{% if post.comments.count != 1 %}s{% endif %}</h5>
+                
+                {% for comment in post.comments.all %}
+                {% if comment.is_approved %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.name }} said:</h6>
+                        <p class="card-text">{{ comment.content }}</p>
+                        <small class="text-muted">{{ comment.created_at|date:"F d, Y" }}</small>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>No comments yet. Be the first to comment!</p>
+            {% endif %}
         </div>
     </article>
 </div>

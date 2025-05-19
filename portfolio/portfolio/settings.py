@@ -66,7 +66,7 @@ ROOT_URLCONF = 'portfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates' ,
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +137,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom error handlers (set in urls.py):
 # handler404 = 'core.views.custom_404_view'
 # handler500 = 'core.views.custom_500_view'
+
+# Authentication settings
+LOGIN_REDIRECT_URL = 'core:user_blog_posts'
+LOGOUT_REDIRECT_URL = 'core:home'
+LOGIN_URL = 'login'
+
+# Email backend for development - console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

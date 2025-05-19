@@ -8,13 +8,16 @@
         {% if posts %}
             {% for post in posts %}
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100 blog-card">
                         {% if post.featured_image %}
                             <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
-                            <p class="card-text text-muted">{{ post.created_at|date:"F d, Y" }}</p>
+                            <p class="card-text text-muted">
+                                By {% if post.author %}{{ post.author.get_full_name|default:post.author.username }}{% else %}Anonymous{% endif %}<br>
+                                {{ post.created_at|date:"F d, Y" }}
+                            </p>
                             <p class="card-text">{{ post.excerpt|truncatewords:25 }}</p>
                             <a href="{% url 'core:blog_detail' post.slug %}" class="btn btn-primary">Read More</a>
                         </div>
