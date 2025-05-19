@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">About Me</h1>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-3">Welcome to my portfolio!</h2>
+                    <p>I am Maimoon, a Full Stack Developer with expertise in building modern web applications. I'm passionate about creating clean, efficient, and user-friendly solutions.</p>
+                    
+                    <h3 class="h5 mt-4 mb-3">My Background</h3>
+                    <p>With several years of experience in web development, I specialize in building applications using modern technologies and frameworks. My journey in programming began with a deep curiosity about how things work on the web.</p>
+                    
+                    <h3 class="h5 mt-4 mb-3">My Approach</h3>
+                    <p>I believe in writing clean, maintainable code and focusing on creating excellent user experiences. I enjoy solving complex problems and constantly learning new technologies and techniques.</p>
+                    
+                    <h3 class="h5 mt-4 mb-3">Outside of Coding</h3>
+                    <p>When I'm not coding, I enjoy [your hobbies/interests]. I also contribute to open-source projects and participate in developer communities.</p>
+                    
+                    <div class="mt-4">
+                        <a href="{% url 'core:contact' %}" class="btn btn-primary">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
