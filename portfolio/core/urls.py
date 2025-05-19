@@ -13,6 +13,9 @@ urlpatterns = [
     path('blog/', views.blog_list, name='blog_list'),
     path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
     path('blog/<slug:slug>/comment/', views.add_comment, name='add_comment'),
+    path('blog/category/<slug:category_slug>/', views.category_posts, name='category_posts'),
+    path('blog/tag/<slug:tag_slug>/', views.tag_posts, name='tag_posts'),
+    path('blog/search/', views.search_posts, name='search_posts'),
     
     # Authentication
     path('accounts/signup/', views.signup, name='signup'),

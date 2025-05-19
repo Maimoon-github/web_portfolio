@@ -28,6 +28,66 @@
     </div>
     {% endif %}
     
+    <!-- Stats cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-light text-center mb-3">
+                <div class="card-body">
+                    <h3 class="display-4">{{ total_posts }}</h3>
+                    <p class="text-muted mb-0">Total Posts</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white text-center mb-3">
+                <div class="card-body">
+                    <h3 class="display-4">{{ published_posts }}</h3>
+                    <p class="mb-0">Published</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-secondary text-white text-center mb-3">
+                <div class="card-body">
+                    <h3 class="display-4">{{ draft_posts }}</h3>
+                    <p class="mb-0">Drafts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter options -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" class="row g-3">
+                        <div class="col-md-5">
+                            <label for="category" class="form-label">Filter by Category</label>
+                            <select name="category" id="category" class="form-select">
+                                <option value="">All Categories</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.slug }}" {% if category_filter == category.slug %}selected{% endif %}>{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="status" class="form-label">Filter by Status</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="">All Posts</option>
+                                <option value="published" {% if status_filter == 'published' %}selected{% endif %}>Published</option>
+                                <option value="draft" {% if status_filter == 'draft' %}selected{% endif %}>Draft</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">Filter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col">
             <div class="card shadow-sm">

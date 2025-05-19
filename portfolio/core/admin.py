@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, Contact, BlogPost, Comment
+from .models import Project, Skill, Contact, BlogPost, Comment, Category, Tag
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -17,13 +17,27 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'subject', 'message')
     readonly_fields = ('created_at',)
 
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name', 'description')
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name',)
+    
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'created_at', 'updated_at', 'is_published')
-    list_editable = ('is_published',)
+    list_display = ('title', 'author', 'category', 'created_at', 'updated_at', 'views_count', 'is_published')
+    list_editable = ('is_published', 'category')
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'content', 'excerpt')
-    list_filter = ('is_published', 'created_at', 'author')
+    list_filter = ('is_published', 'created_at', 'author', 'category', 'tags')
+    filter_horizontal = ('tags',)
+    readonly_fields = ('views_count',)
 
 
 @admin.register(Comment)

@@ -48,6 +48,49 @@ footer {
     margin: 0 auto;
 }
 
+.blog-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-link {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    color: #495057;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.tag-link:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.tag-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.badge {
+    font-weight: 500;
+}
+
 .blog-content {
     font-size: 1.1rem;
     line-height: 1.7;

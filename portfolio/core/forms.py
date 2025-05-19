@@ -19,9 +19,11 @@ class ContactForm(forms.ModelForm):
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'content', 'featured_image', 'excerpt', 'is_published']
+        fields = ['title', 'category', 'tags', 'content', 'featured_image', 'excerpt', 'is_published']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
+            'tags': forms.SelectMultiple(attrs={'class': 'form-select', 'size': '4'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
             'excerpt': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Brief summary (optional)'}),
             'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
