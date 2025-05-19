@@ -36,3 +36,11 @@ def blog_list(request):
 def blog_detail(request, slug):
     post = get_object_or_404(BlogPost, slug=slug, is_published=True)
     return render(request, 'core/blog_detail.html', {'post': post})
+
+def custom_404_view(request, exception):
+    """Custom handler for 404 errors (Page Not Found)."""
+    return render(request, '404.html', status=404)
+
+def custom_500_view(request):
+    """Custom handler for 500 errors (Server Error)."""
+    return render(request, '500.html', status=500)
