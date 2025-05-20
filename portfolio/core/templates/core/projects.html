@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="container py-5">
-    <h2 class="text-center mb-5">My Projects</h2>
+    <h2 class="text-center mb-5 animated-heading">My Projects</h2>
     <div class="row">
         {% if projects %}
             {% for project in projects %}
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100">
+                <div class="col-md-6 col-lg-4 mb-4 animate-on-scroll">
+                    <div class="card h-100 card-3d">
                         {% if project.image %}
                             <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
                         {% endif %}
@@ -18,7 +18,7 @@
                         <div class="card-footer bg-white border-top-0">
                             {% if project.url %}
                                 <a href="{{ project.url }}" class="btn btn-primary" target="_blank">
-                                    View Project
+                                    <i class="fas fa-external-link-alt me-2"></i>View Project
                                 </a>
                             {% endif %}
                         </div>

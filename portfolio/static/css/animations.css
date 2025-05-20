@@ -1,0 +1,420 @@
+/* ===== ADVANCED ANIMATIONS AND EFFECTS ===== */
+
+/* Scroll to top button */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all var(--transition-normal);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.scroll-top-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Button ripple effect */
+.btn-ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    pointer-events: none;
+    animation: ripple 0.6s linear;
+    z-index: 0;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Enhance dropdown menu animation */
+.dropdown-menu {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown.show .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image lazy loading animation */
+img.img-loaded {
+    animation: imgFadeIn 0.5s ease;
+}
+
+@keyframes imgFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Text animations */
+.animated-heading {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.animated-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s ease;
+}
+
+.animated-heading:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    border-right: 3px solid var(--primary-color);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color) }
+}
+
+/* Enhanced hover effects for links */
+.hover-link {
+    position: relative;
+    display: inline-block;
+    padding: 2px 0;
+    transition: color 0.3s ease;
+}
+
+.hover-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.hover-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Enhanced animated progress bars */
+.progress-animated .progress-bar {
+    width: 0;
+    transition: width 1.5s ease-out;
+}
+
+/* Scroll animation classes */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 1s ease forwards;
+}
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideRight 1s ease forwards;
+}
+
+.slide-left {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideLeft 1s ease forwards;
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animation delays */
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-400 {
+    animation-delay: 0.4s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+/* Floating animation */
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Pulse animation */
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Glow effect */
+.glow-on-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-on-hover::before {
+    content: '';
+    background: linear-gradient(45deg, 
+        #ff0000, #ff7300, #fffb00, #48ff00, 
+        #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: inherit;
+}
+
+.glow-on-hover:hover::before {
+    opacity: 0.8;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* 3D Hover Effect for Cards */
+.card-3d {
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-3d:hover {
+    transform: rotateY(10deg) rotateX(10deg);
+}
+
+/* ===== BLOG SPECIFIC ANIMATIONS ===== */
+
+/* Blog Card Hover Animation */
+@keyframes cardRaise {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes cardShadow {
+    0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+    100% { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+}
+
+/* Tag Cloud Animation */
+@keyframes tagFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.tag-link {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.35rem 0.75rem;
+    background-color: var(--light);
+    color: var(--dark);
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--light-border);
+    animation: tagFloat 3s ease-in-out infinite;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+.tag-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tag-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Popular Tags Animation */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tag-cloud a:nth-child(3n+1) {
+    --animation-order: 1;
+}
+
+.tag-cloud a:nth-child(3n+2) {
+    --animation-order: 2;
+}
+
+.tag-cloud a:nth-child(3n+3) {
+    --animation-order: 3;
+}
+
+/* Blog Title Animation */
+@keyframes titleHighlight {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, 
+        var(--primary-color), 
+        var(--secondary-color), 
+        var(--accent-color), 
+        var(--primary-color));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleHighlight 4s linear infinite;
+}
+
+/* Blog Image Hover Animation */
+.blog-card:hover .lazy-load {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+
+.lazy-load {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Comment Form Animation */
+.comment-form .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.comment-form .input-group-text {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.comment-form .form-control:focus + .input-group-text,
+.comment-form .input-group:focus-within .input-group-text {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Mobile Responsive Animations */
+@media (max-width: 768px) {
+    .card-3d:hover {
+        transform: translateY(-5px);
+    }
+    
+    .tag-link {
+        animation: none;
+    }
+}

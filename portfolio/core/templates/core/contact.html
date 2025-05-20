@@ -1,14 +1,15 @@
 {% extends 'core/base.html' %}
+{% load custom_filters %}
 
 {% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="text-center mb-5">Contact Me</h2>
-            <form method="post">
+            <h2 class="text-center mb-5 animated-heading">Contact Me</h2>
+            <form method="post" class="contact-form slide-up">
                 {% csrf_token %}
                 {% for field in form %}
-                <div class="mb-3">
+                <div class="mb-3 fade-in" style="animation-delay: {{ forloop.counter0|multiply:100 }}ms">
                     <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                     {{ field }}
                     {% if field.errors %}
@@ -18,7 +19,9 @@
                     {% endif %}
                 </div>
                 {% endfor %}
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary fade-in" style="animation-delay: 500ms">
+                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                </button>
             </form>
         </div>
     </div>
