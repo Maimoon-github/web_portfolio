@@ -18,7 +18,6 @@ urlpatterns = [
     path('blog/search/', views.search_posts, name='search_posts'),
     
     # Authentication
-    path('accounts/signup/', views.signup, name='signup'),
     
     # Blog management
     path('dashboard/posts/', views.user_blog_posts, name='user_blog_posts'),

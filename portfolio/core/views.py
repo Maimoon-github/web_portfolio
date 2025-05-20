@@ -6,7 +6,7 @@ from django.http import HttpResponseForbidden
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Project, Skill, BlogPost, Comment, Category, Tag
-from .forms import ContactForm, BlogPostForm, SignUpForm, CommentForm
+from .forms import ContactForm, BlogPostForm, CommentForm
 
 def home(request):
     recent_posts = BlogPost.objects.filter(is_published=True)[:3]
@@ -295,20 +295,3 @@ def custom_404_view(request, exception):
 def custom_500_view(request):
     """Custom handler for 500 errors (Server Error)."""
     return render(request, '500.html', status=500)
-
-
-def signup(request):
-    """User registration view"""
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            messages.success(request, f'Account created for {username}! You are now logged in.')
-            return redirect('core:home')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
